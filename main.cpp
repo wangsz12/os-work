@@ -20,9 +20,11 @@ int main(int argc, char *argv[])
     qRegisterMetaType<MemoryAllocateFlag>("MemoryAllocateFlag");
 
     QObject::connect(w.os->logger, SIGNAL(logSignal(QString)), &w, SLOT(onLog(QString)), Qt::QueuedConnection);
-    QObject::connect(w.os, SIGNAL(setRunningProcessSignal(Process*)), &w, SLOT(onSetRunningProcess(Process*)), Qt::QueuedConnection);
+    QObject::connect(w.os->cores[0], SIGNAL(setRunningProcessSignal(int, Process*)), &w, SLOT(onSetRunningProcess(int, Process*)), Qt::QueuedConnection);
+    QObject::connect(w.os->cores[1], SIGNAL(setRunningProcessSignal(int, Process*)), &w, SLOT(onSetRunningProcess(int, Process*)), Qt::QueuedConnection);
     QObject::connect(w.os->memory, SIGNAL(setMemorySignal(Process*, MemoryAllocateFlag)), &w, SLOT(onSetMemory(Process*, MemoryAllocateFlag)), Qt::QueuedConnection);
     QObject::connect(w.newProcessWindow, SIGNAL(addProcessSignal(QString, int, int, int, int, Process*, Process*)), &w, SLOT(onAddProcess(QString, int, int, int, int, Process*, Process*)), Qt::QueuedConnection);
+    QObject::connect(w.os, SIGNAL(clearRunningProcessSignal(int)), &w, SLOT(onClearRunningProcess(int)), Qt::QueuedConnection);
     QObject::connect(w.os, SIGNAL(updateReadyListSignal()), &w, SLOT(onUpdateReadyList()), Qt::QueuedConnection);
     QObject::connect(w.os, SIGNAL(updateBackupListSignal()), &w, SLOT(onUpdateBackupList()), Qt::QueuedConnection);
     QObject::connect(w.os, SIGNAL(updateWaitingListSignal()), &w, SLOT(onUpdateWaitingList()), Qt::QueuedConnection);

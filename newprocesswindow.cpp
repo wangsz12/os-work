@@ -45,6 +45,11 @@ void NewProcessWindow::init() {
     ui->preProcessSelect->setEnabled(false);
     ui->sucProcessSelect->setEnabled(false);
 
+    ui->preProcessSelect->clear();
+    ui->sucProcessSelect->clear();
+    ui->preProcessSelect->addItem("无");
+    ui->sucProcessSelect->addItem("无");
+
     ui->propsSelect->setCurrentIndex(0);
     ui->preProcessSelect->setCurrentIndex(0);
     ui->sucProcessSelect->setCurrentIndex(0);
@@ -52,8 +57,6 @@ void NewProcessWindow::init() {
 
 void NewProcessWindow::before_show() {
     init();
-    ui->preProcessSelect->addItem("无");
-    ui->sucProcessSelect->addItem("无");
 
     for (list<Process*>::iterator i = os->all.begin(); i != os->all.end(); ++i) {
         if ((*i)->pcb->state != TERMINATED) {

@@ -25,6 +25,7 @@ public:
 	friend class Process;
 	friend class PriorityCompare;
 	friend class OS;
+    friend class Core;
     friend class MainWindow;
     friend class NewProcessWindow;
     friend class MemoryDisplayBlock;

@@ -47,9 +47,10 @@ private:
 private slots:
     void onTimeout();
     void onLog(QString);
-    void onSetRunningProcess(Process*);
+    void onSetRunningProcess(int, Process*);
     void onSetMemory(Process*, MemoryAllocateFlag);
     void onAddProcess(QString, int, int, int, int, Process*, Process*);
+    void onClearRunningProcess(int);
     void onUpdateReadyList();
     void onUpdateBackupList();
     void onUpdateWaitingList();

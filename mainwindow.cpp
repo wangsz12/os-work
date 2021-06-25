@@ -62,7 +62,7 @@ void MainWindow::paintEvent(QPaintEvent *)
     painter.setPen(QPen(Qt::gray, 1));
     painter.setBrush(QBrush(Qt::white));
     painter.translate(30, 10);
-    painter.drawRect(0, 310, 805, 30);
+    painter.drawRect(0, 355, 805, 30);
 //    painter.drawRect(727, 510, 30, 30);
     painter.save();
 
@@ -72,7 +72,7 @@ void MainWindow::paintEvent(QPaintEvent *)
         double proportion = double(m) / os->memory->size;
         QString str = "| ";
         str += QString::number(m);
-        painter.drawText(proportion * memoryDrawer.totalPixel, 355, str);
+        painter.drawText(proportion * memoryDrawer.totalPixel, 400, str);
     }
     painter.restore();
 
@@ -87,11 +87,11 @@ void MainWindow::paintEvent(QPaintEvent *)
             painter.setPen(QPen((*i)->color, 1));
             painter.setBrush(QBrush((*i)->color));
             painter.save();
-            painter.drawRect((*i)->begin + 1, 312, (*i)->width, 26);
+            painter.drawRect((*i)->begin + 1, 357, (*i)->width, 26);
 
             painter.setFont(QFont("微软雅黑", 10));
             painter.setPen(Qt::black);
-            painter.drawText((*i)->begin + 5, 330, (*i)->name);
+            painter.drawText((*i)->begin + 5, 375, (*i)->name);
             painter.restore();
 
             ++i;
@@ -99,7 +99,7 @@ void MainWindow::paintEvent(QPaintEvent *)
         else {
             painter.setPen(QPen(Qt::white, 1));
             painter.setBrush(QBrush(Qt::white));
-            painter.drawRect((*i)->begin + 1, 312, (*i)->width, 26);
+            painter.drawRect((*i)->begin + 1, 357, (*i)->width, 26);
 
             i = memoryDrawer.blocks.erase(i);
         }
@@ -107,17 +107,11 @@ void MainWindow::paintEvent(QPaintEvent *)
 }
 
 void MainWindow::initWindow() {
-    ui->pidLabel->setText("---");
-    ui->processNameLabel->setText("---");
-    ui->priorityLabel->setText("---");
-    ui->demandTimeLabel->setText("---");
-    ui->runningTimeLabel->setText("---");
-    ui->processPropertyLabel->setText("---");
-    ui->progressBar->setMinimum(0);
-    ui->progressBar->setMaximum(100);
-    ui->progressBar->setValue(0);
     ui->usedLabel->setText("0");
     ui->totalLabel->setText(QString::number(os->memory->size));
+
+    onClearRunningProcess(1);
+    onClearRunningProcess(2);
 
     os->init();
 }
@@ -134,15 +128,26 @@ void MainWindow::onLog(QString info) {
     ui->systemLog->scrollToBottom();
 }
 
-void MainWindow::onSetRunningProcess(Process* p) {
-    ui->pidLabel->setText(QString::number(p->pcb->pid));
-    ui->processNameLabel->setText(p->pcb->name);
-    ui->priorityLabel->setText(QString::number(p->pcb->priority));
-    ui->demandTimeLabel->setText(QString::number(p->pcb->demand_time));
-    ui->runningTimeLabel->setText(QString::number(p->running_time));
-    ui->processPropertyLabel->setText(p->pcb->process_property == INDEPENDENT ? "独立进程" : "同步进程");
+void MainWindow::onSetRunningProcess(int which, Process* p) {
     double progress = double(p->running_time) / p->pcb->demand_time;
-    ui->progressBar->setValue(progress * 100);
+    if (which == 1) {
+        ui->pidLabel->setText(QString::number(p->pcb->pid));
+        ui->processNameLabel->setText(p->pcb->name);
+        ui->priorityLabel->setText(QString::number(p->pcb->priority));
+        ui->demandTimeLabel->setText(QString::number(p->pcb->demand_time));
+        ui->runningTimeLabel->setText(QString::number(p->running_time));
+        ui->processPropertyLabel->setText(p->pcb->process_property == INDEPENDENT ? "独立进程" : "同步进程");
+        ui->progressBar->setValue(progress * 100);
+    }
+    else {
+        ui->pidLabel_2->setText(QString::number(p->pcb->pid));
+        ui->processNameLabel_2->setText(p->pcb->name);
+        ui->priorityLabel_2->setText(QString::number(p->pcb->priority));
+        ui->demandTimeLabel_2->setText(QString::number(p->pcb->demand_time));
+        ui->runningTimeLabel_2->setText(QString::number(p->running_time));
+        ui->processPropertyLabel_2->setText(p->pcb->process_property == INDEPENDENT ? "独立进程" : "同步进程");
+        ui->progressBar_2->setValue(progress * 100);
+    }
 }
 
 void MainWindow::onSetMemory(Process* p, MemoryAllocateFlag flag) {
@@ -175,6 +180,33 @@ void MainWindow::onAddProcess(QString name, int priority, int memory, int time, 
         os->add_process(new Process(name, time, priority, memory));
     else
         os->add_process(new Process(name, time, priority, memory, pre, suc));
+}
+
+void MainWindow::onClearRunningProcess(int which) {
+    if (which == 1) {
+        ui->pidLabel->setText("---");
+        ui->processNameLabel->setText("---");
+        ui->priorityLabel->setText("---");
+        ui->demandTimeLabel->setText("---");
+        ui->runningTimeLabel->setText("---");
+        ui->memoryLabel->setText("---");
+        ui->processPropertyLabel->setText("---");
+        ui->progressBar->setMinimum(0);
+        ui->progressBar->setMaximum(100);
+        ui->progressBar->setValue(0);
+    }
+    else {
+        ui->pidLabel_2->setText("---");
+        ui->processNameLabel_2->setText("---");
+        ui->priorityLabel_2->setText("---");
+        ui->demandTimeLabel_2->setText("---");
+        ui->runningTimeLabel_2->setText("---");
+        ui->memoryLabel_2->setText("---");
+        ui->processPropertyLabel_2->setText("---");
+        ui->progressBar_2->setMinimum(0);
+        ui->progressBar_2->setMaximum(100);
+        ui->progressBar_2->setValue(0);
+    }
 }
 
 void MainWindow::onUpdateReadyList() {

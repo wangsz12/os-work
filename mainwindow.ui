@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1140</width>
-    <height>954</height>
+    <width>1152</width>
+    <height>986</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,19 +19,52 @@
      <rect>
       <x>30</x>
       <y>10</y>
-      <width>1081</width>
-      <height>891</height>
+      <width>1091</width>
+      <height>931</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="main_layout">
-     <item row="4" column="1" rowspan="4">
+     <item row="1" column="0" colspan="3">
+      <widget class="Line" name="line_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>系统日志：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLabel" name="label_13">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>内存空闲分区表</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" rowspan="4">
       <widget class="Line" name="line_4">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
       </widget>
      </item>
-     <item row="4" column="0" rowspan="4">
+     <item row="2" column="0" rowspan="4">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QLabel" name="label">
@@ -48,7 +81,7 @@
           </font>
          </property>
          <property name="text">
-          <string>当前处理进程信息:</string>
+          <string>CPU1 当前处理进程信息:</string>
          </property>
          <property name="margin">
           <number>0</number>
@@ -320,6 +353,298 @@
         </widget>
        </item>
        <item>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>20</number>
+         </property>
+         <item row="2" column="4">
+          <widget class="QLabel" name="label_21">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>优先级：</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="5">
+          <widget class="QLabel" name="priorityLabel_2">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="8">
+          <widget class="QLabel" name="label_19">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>已运行时间：</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLabel" name="processPropertyLabel_2">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLabel" name="processNameLabel_2">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_25">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>占用内存：</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_18">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>PID：</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="7">
+          <widget class="QLabel" name="demandTimeLabel_2">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="5" colspan="5">
+          <widget class="QProgressBar" name="progressBar_2">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="value">
+            <number>24</number>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="label_22">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>进程名：</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="9">
+          <widget class="QLabel" name="runningTimeLabel_2">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="6">
+          <widget class="QLabel" name="label_23">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>所需时间：</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLabel" name="label_24">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>进程属性：</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="pidLabel_2">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="4">
+          <widget class="QLabel" name="label_26">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>进程进度：</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="memoryLabel_2">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="10">
+          <widget class="QLabel" name="label_27">
+           <property name="minimumSize">
+            <size>
+             <width>809</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>CPU2 当前处理进程信息:</string>
+           </property>
+           <property name="margin">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="2" column="2">
           <widget class="QLabel" name="label_7">
@@ -399,7 +724,13 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>50</height>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
           </size>
          </property>
          <property name="text">
@@ -409,8 +740,21 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_4">
-         <item row="9" column="0">
-          <widget class="QTableWidget" name="waitingList">
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_15">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>就绪队列：</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QTableWidget" name="backupList">
            <column>
             <property name="text">
              <string>PID</string>
@@ -428,12 +772,7 @@
            </column>
            <column>
             <property name="text">
-             <string>I/O时间</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>已执行时间</string>
+             <string>所需时间</string>
             </property>
            </column>
            <column>
@@ -456,24 +795,55 @@
              <string>后继进程</string>
             </property>
            </column>
-           <column>
-            <property name="text">
-             <string>操作</string>
-            </property>
-           </column>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_15">
-           <property name="font">
-            <font>
-             <family>微软雅黑</family>
-             <pointsize>10</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>就绪队列：</string>
-           </property>
+         <item row="2" column="0">
+          <widget class="QTableWidget" name="readyList">
+           <column>
+            <property name="text">
+             <string>PID</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>进程名</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>优先级</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>所需时间</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>已运行时间</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>所占内存</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>进程属性</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>前驱进程</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>后继进程</string>
+            </property>
+           </column>
           </widget>
          </item>
          <item row="11" column="0">
@@ -530,48 +900,17 @@
            </column>
           </widget>
          </item>
-         <item row="6" column="0">
-          <widget class="QTableWidget" name="backupList">
-           <column>
-            <property name="text">
-             <string>PID</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>进程名</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>优先级</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>所需时间</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>所占内存</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>进程属性</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>前驱进程</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>后继进程</string>
-            </property>
-           </column>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_16">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>后备队列：</string>
+           </property>
           </widget>
          </item>
          <item row="7" column="0">
@@ -584,68 +923,6 @@
            </property>
            <property name="text">
             <string>阻塞队列</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QTableWidget" name="readyList">
-           <column>
-            <property name="text">
-             <string>PID</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>进程名</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>优先级</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>所需时间</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>已运行时间</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>所占内存</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>进程属性</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>前驱进程</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>后继进程</string>
-            </property>
-           </column>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_16">
-           <property name="font">
-            <font>
-             <family>微软雅黑</family>
-             <pointsize>10</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>后备队列：</string>
            </property>
           </widget>
          </item>
@@ -662,11 +939,68 @@
            </property>
           </widget>
          </item>
+         <item row="9" column="0">
+          <widget class="QTableWidget" name="waitingList">
+           <column>
+            <property name="text">
+             <string>PID</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>进程名</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>优先级</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>I/O时间</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>已执行时间</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>所占内存</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>进程属性</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>前驱进程</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>后继进程</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>操作</string>
+            </property>
+           </column>
+          </widget>
+         </item>
         </layout>
        </item>
       </layout>
      </item>
-     <item row="2" column="0" colspan="3">
+     <item row="5" column="2">
+      <widget class="QListWidget" name="systemLog"/>
+     </item>
+     <item row="0" column="0" colspan="3">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <property name="topMargin">
         <number>10</number>
@@ -760,76 +1094,14 @@
        </item>
       </layout>
      </item>
-     <item row="3" column="0" colspan="3">
-      <widget class="Line" name="line_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="2">
-      <widget class="QListWidget" name="systemLog"/>
-     </item>
-     <item row="1" column="0" colspan="3">
-      <widget class="Line" name="line">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="2">
-      <widget class="QLabel" name="label_13">
-       <property name="font">
-        <font>
-         <family>微软雅黑</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>内存空闲分区表</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="2">
-      <widget class="QLabel" name="label_5">
-       <property name="font">
-        <font>
-         <family>微软雅黑</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>系统日志：</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0" colspan="3">
-      <widget class="QLabel" name="label_19">
-       <property name="minimumSize">
+     <item row="3" column="2">
+      <widget class="QTableWidget" name="memoryTable">
+       <property name="maximumSize">
         <size>
-         <width>0</width>
-         <height>0</height>
+         <width>99999</width>
+         <height>16777215</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <family>微软雅黑</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>操作系统实验——模拟进程调度</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="margin">
-        <number>10</number>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="2">
-      <widget class="QTableWidget" name="memoryTable">
        <column>
         <property name="text">
          <string>起址</string>
@@ -850,7 +1122,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1140</width>
+     <width>1152</width>
      <height>22</height>
     </rect>
    </property>

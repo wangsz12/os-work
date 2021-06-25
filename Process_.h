@@ -7,6 +7,7 @@ class QString;
 
 struct IO {
     bool trigger = false;
+    bool finished = false;
     int begin_time = -1;
     int time = -1;
     int running_time = 0;
@@ -31,6 +32,7 @@ public:
 
 	friend class PriorityCompare;
 	friend class OS;
+    friend class Core;
 	friend class Memory;
     friend class MainWindow;
     friend class NewProcessWindow;

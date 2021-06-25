@@ -14,6 +14,11 @@ OS::OS(int memory_size)
 {
     memory = new Memory(memory_size);
     logger = new Logger;
+    cores = new Core*[2];
+    for (int i = 0; i < 2; ++i) {
+        cores[i] = new Core(i + 1);
+        cores[i]->init(timeslice, &ready, &waiting, memory, logger);
+    }
 }
 
 void OS::init() {
@@ -101,21 +106,20 @@ void OS::load_process_from_backup() {
 void OS::wake_process_from_waiting() {
     list<Process*>::iterator i = waiting.begin();
     while (i != waiting.end()) {
-        if ((*i)->pcb->process_property == SYNC && (*i)->pcb->pre_process->pcb->state != TERMINATED) {
+        if ((*i)->io->trigger && !(*i)->io->finished) {
+            ++(*i)->io->running_time;
+            if ((*i)->io->running_time == (*i)->io->time) (*i)->io->finished = true;
             ++i;
             continue;
         }
 
-        if ((*i)->io->trigger) {
-            ++(*i)->io->running_time;
-            if ((*i)->io->running_time < (*i)->io->time) {
-                ++i;
-                continue;
-            }
+        if ((*i)->pcb->process_property == SYNC && (*i)->pcb->pre_process && (*i)->pcb->pre_process->pcb->state != TERMINATED) {
+            ++i;
+            continue;
         }
 
         (*i)->pcb->state = READY;
-        ready.push((*i));
+        ready.push(*i);
         i = waiting.erase(i);
     }
     updateReadyList();
@@ -123,41 +127,31 @@ void OS::wake_process_from_waiting() {
 }
 
 void OS::execute() {
-    if (p_running == nullptr) {
-		if (!ready.empty()) {
-            p_running = ready.top();
-            ready.pop();
-            logger->log("开始运行进程 " + p_running->pcb->name);
-		}
-        else {
-            logger->log("就绪队列已空");
-			return;
-		}
+    Process* p[2] = {nullptr, nullptr};
+    int no_work = 0;
+    for (int i = 0; i < 2; ++i) {
+        if (cores[i]->idle) {
+            if (!ready.empty()) {
+                p[i] = ready.top();
+                ready.pop();
+            }
+            else {
+                clearRunningProcess(i + 1);
+                no_work++;
+            }
+        }
+    }
+    if (no_work == 2) {
+        logger->log("没有可运行的进程");
+    }
+    else {
+        for (int i = 0; i < 2; ++i) {
+            cores[i]->execute(p[i]);
+        }
     }
 
-    setRunningProcess(p_running);
-    if (p_running->run(timeslice)) {
-        if (p_running->pcb->state == WAITING) {
-            logger->log("进程 " + p_running->pcb->name + " 开始执行I/O操作");
-            waiting.push_back(p_running);
-        }
-
-        if (p_running->pcb->state == TERMINATED) {
-            logger->log("进程 " + p_running->pcb->name + " 运行完毕");
-            memory->free(p_running);
-        }
-
-        p_running = nullptr;
-	}
-	else {
-        ready.push(p_running);
-    }
     updateReadyList();
     updateWaitingList();
-}
-
-void OS::setRunningProcess(Process* p) {
-    emit setRunningProcessSignal(p);
 }
 
 void OS::suspend(int pid) {
@@ -200,6 +194,10 @@ bool OS::relieve_suspended(int pid) {
     updateWaitingList();
 
     return true;
+}
+
+void OS::clearRunningProcess(int which) {
+    emit clearRunningProcessSignal(which);
 }
 
 void OS::updateReadyList() {
